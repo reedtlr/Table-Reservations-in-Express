@@ -12,3 +12,15 @@ var PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "view.html"));
+  });
+  
+  app.get("/add", function(req, res) {
+    res.sendFile(path.join(__dirname, "add.html"));
+  });
+  
+  // Displays all characters
+  app.get("/api/characters", function(req, res) {
+    return res.json(characters);
+  });
