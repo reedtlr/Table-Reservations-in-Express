@@ -53,10 +53,12 @@ app.get("/api/reservations/:reservation", function(req, res) {
             var newReservation = reservations[i];
             tabled.push(newReservation);
             res.json(newReservation);
+            res.end("your reservation has been placed on a wait list");
         } else {
             var newReservation = reservations[i];
             waitList.push(newReservation);
             res.json(newReservation);
+            res.end("your table is ready");
         }
     }
         
@@ -71,9 +73,11 @@ app.get("/api/reservations/:reservation", function(req, res) {
         if (tabled.length > 4) {
             waitList.push(newReservation);
             res.json(newReservation);
+            return alert('Your reservation was added to the wait list')
         } else {
             tabled.push(newReservation);
             res.json(newReservation);
+           return  alert('Your reservation was added and your table is ready')
         }
         }
 

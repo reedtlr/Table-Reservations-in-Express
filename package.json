@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/reedtlr/Table-Reservations-in-Express#readme",
   "dependencies": {
+    "alert": "^5.0.5",
     "express": "^4.17.1"
   }
 }
