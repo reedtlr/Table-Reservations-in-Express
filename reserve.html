@@ -26,7 +26,7 @@
           </div>
           <div class="card-body">
             <form method="POST" role="form">
-              <div class="form-group">
+              <div class="form-group" id="resForm">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name">
               </div>
@@ -61,11 +61,13 @@
         email: $("#email").val().trim(),
         uniqueId: $("#uniqueId").val().trim()
       };
-      $.post("/api/tables", newGuest)
+      $.post("/api/Reservation", newGuest)
         .then(function(data) {
           console.log("tables.html", data);
         });
     });
+
+
   </script>
 </body>
 </html>
