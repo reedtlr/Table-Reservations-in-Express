@@ -14,6 +14,10 @@ app.use(express.json());
 
 var reservations = [];
 
+var tabled = [];
+
+var waitList = [];
+
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
@@ -30,6 +34,41 @@ app.get("/", function(req, res) {
   // Displays all reservations
   app.get("/api/reservations", function(req, res) {
     return res.json(reservations);
+  });
+
+  app.get("/api/tabled", function(req, res) {
+    return res.json(tabled);
+  });
+
+  app.get("/api/waitList", function(req, res) {
+    return res.json(waitList);
+  });
+
+// Displays a single reservation, or returns false
+app.get("/api/reservations/:reservation", function(req, res) {
+    console.log(res);
+  
+    for (var i = 0; i < reservations.length; i++) {
+        if (i < 4) {
+            var newReservation = reservations[i];
+            tabled.push(newReservation);
+            res.json(newReservation);
+        } else {
+            var newReservation = reservations[i];
+            waitList.push(newReservation);
+            res.json(newReservation);
+        }
+    }
+        
+  });
+
+
+  app.post(
+    "/api/Reservation", function(req, res) {
+      var newReservation = req.body;
+      newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+      reservations.push(newReservation);
+      res.json(newReservation);
   });
 
   app.listen(PORT, function() {
