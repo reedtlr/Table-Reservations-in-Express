@@ -12,17 +12,24 @@ var PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+var reservations = [];
+
+
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+    res.sendFile(path.join(__dirname, "home.html"));
   });
   
-  app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+  app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
   });
   
+  app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+  });
+
   // Displays all characters
-  app.get("/api/characters", function(req, res) {
-    return res.json(characters);
+  app.get("/api/reservations", function(req, res) {
+    return res.json(reservations);
   });
 
   app.listen(PORT, function() {
