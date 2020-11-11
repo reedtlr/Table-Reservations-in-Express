@@ -49,7 +49,7 @@ app.get("/api/reservations/:reservation", function(req, res) {
     console.log(res);
   
     for (var i = 0; i < reservations.length; i++) {
-        if (i < 4) {
+        if (i < 5) {
             var newReservation = reservations[i];
             tabled.push(newReservation);
             res.json(newReservation);
