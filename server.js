@@ -66,9 +66,19 @@ app.get("/api/reservations/:reservation", function(req, res) {
   app.post(
     "/api/Reservation", function(req, res) {
       var newReservation = req.body;
-      newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
-      reservations.push(newReservation);
-      res.json(newReservation);
+        
+       var checkTables = (res) => {
+        if (tabled.length > 4) {
+            waitList.push(newReservation);
+            res.json(newReservation);
+        } else {
+            tabled.push(newReservation);
+            res.json(newReservation);
+        }
+        }
+
+        checkTables(res);
+
   });
 
   app.listen(PORT, function() {
