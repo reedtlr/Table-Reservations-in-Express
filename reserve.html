@@ -64,6 +64,11 @@
       $.post("/api/Reservation", newGuest)
         .then(function(data) {
           console.log("tables.html", data);
+          if (data.waitList){
+              alert('added to wait list')
+          } else {
+              alert('added to table')
+          }
         });
     });
 
